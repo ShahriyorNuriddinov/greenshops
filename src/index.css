@@ -1,8 +1,63 @@
 @import "tailwindcss";
-@layer utilities{
-    .container{
-        max-width: 1950px;
-        width: 90%;
-        margin: 0 auto;
-    }
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+.slic-dots li button {
+  background-color: #46a358 !important;
+  opacity: 30%;
+}
+
+.slic-active button {
+  background-color: #46a358 !important;
+}
+
+.ant-slider-track {
+  border: 2px solid #46a358;
+}
+
+.ant-slider .antd-slider-hendler::after {
+  box-shadow: 0 0 0 2px#46a358;
+}
+
+.ant-slider .ant-slider-hendler::after:hover {
+  box-shadow: 0 0 0 2px#46a358;
+}
+
+.ant-select-selection-item {
+  font-size: 15px;
+  color: #3d3d3d;
+}
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+  background-color: #46a358;
+  border-color: #46a358;
+}
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-tab-btn {
+  color: #46a358;
+  border-color: #46a358 !important;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+  border-color: #46a358 !important;
+}
+
+.ant-input:focus {
+  border-color: #46a358 !important;
+}
+
+.ant-input:hover {
+  border-color: #46a358 !important;
+}
+
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: #46a358 !important;
+  box-shadow: 0 0 0 2px#46a358;
+}
+
+.btn {
+  @apply text-white cursor-pointer w-[100px] h-[35px] bg-[#46a358] flex items-center rounded-md max-md:hidden;
 }
