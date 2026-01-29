@@ -1,14 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyCvhr4bctMT2bpNBF-wYTgitI2rvY1GZ8Q",
-  authDomain: "greenshop-n81.firebaseapp.com",
-  projectId: "greenshop-n81",
-  storageBucket: "greenshop-n81.firebasestorage.app",
-  messagingSenderId: "704717771259",
-  appId: "1:704717771259:web:891cda71cb230b85093b5e",
-  measurementId: "G-VMBEC784LJ",
+  apiKey: "AIzaSyBRHgHJj5PEuOF_XYxxtpYM-w1M3dELT2w",
+  authDomain: "greenshop-e7681.firebaseapp.com",
+  projectId: "greenshop-e7681",
+  storageBucket: "greenshop-e7681.firebasestorage.app",
+  messagingSenderId: "311959228068",
+  appId: "1:311959228068:web:291f68dbbd953ef309e031",
+  measurementId: "G-PPJ4H2WYFY"
 };
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
