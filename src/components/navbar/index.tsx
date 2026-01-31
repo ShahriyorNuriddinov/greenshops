@@ -11,6 +11,7 @@ const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const { user, isAuth } = useReduxSelector((state) => state.userSlice);
+   const { data: cartItems } = useReduxSelector((state) => state.shopSlice);
   return (
     <div className="container py-3 border-b border-[#00800043] sticky top-0 bg-white z-50">
       <div className="w-[90%] max-w-[1550px] m-auto flex items-center justify-between">
@@ -52,8 +53,8 @@ const Header = () => {
             />
           </svg>
           <Bell className="cursor-pointer hover:text-[#46A358]" />
-          <Link to={"/shop"}>
-            <svg
+          <Link to={"/shop"} className="relative">
+             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -65,6 +66,11 @@ const Header = () => {
                 fill="#3D3D3D"
               />
             </svg>
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-[#46A358] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
           <button
             onClick={() => {
