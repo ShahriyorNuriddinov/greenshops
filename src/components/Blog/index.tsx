@@ -61,7 +61,7 @@ const PostBlog = () => {
             name="short_description"
             value={formData.short_description}
             onChange={handleChange}
-            placeholder="Qisqacha tavsif (Masalan: Ushbu maqolada o'simliklar parvarishi haqida gaplashamiz...)"
+            placeholder="Qisqacha tavsif "
             className={`${inputStyle} h-[100px] resize-none`}
           ></textarea>
         </div>
