@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Eye, MessageCircle, Heart } from "lucide-react";
 import { Input } from "antd";
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
 import Feature from "../../components/features";
 
 const { Search } = Input;
@@ -92,10 +90,9 @@ const Blogs: React.FC = () => {
   ];
 
   return (
-    <div className="w-full">
-      <Navbar />
+    <div className="">
 
-      <div className="w-[90%] mx-auto py-8 px-4 mt-6 bg-[#f5f5f5] flex flex-wrap justify-center items-end gap-5 sm:gap-10 md:gap-16 rounded-lg">
+      <div className="container mt-6 bg-[#f5f5f5] flex flex-wrap justify-center items-end gap-5 sm:gap-10 md:gap-16 rounded-lg">
         {images.map((img, index) => (
           <img
             key={index}
@@ -181,7 +178,6 @@ const Blogs: React.FC = () => {
       </div>
 
       <Feature />
-      <Footer />
     </div>
   );
 };

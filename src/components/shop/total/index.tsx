@@ -37,10 +37,12 @@ const ShopTotal = () => {
       </Form>
 
       <Prices />
+<Link to="/checkout-your-order">
 
       <button className="mt-6 bg-[#46A358] flex rounded-md items-center justify-center gap-1 text-base text-white w-full h-[40px] hover:bg-green-700 transition">
         Continue to Checkout
       </button>
+</Link>
 
       <Link to="/" className="block text-center mt-4">
         <button className="text-[#46A358] hover:underline transition">Continue Shopping</button>

@@ -61,3 +61,11 @@
 .btn {
   @apply text-white cursor-pointer w-[100px] h-[35px] bg-[#46a358] flex items-center rounded-md max-md:hidden;
 }
+@layer utilities{
+  .container{
+    max-width: 1940px;
+    margin: 0 auto;
+    width: 90%;
+
+  }
+}

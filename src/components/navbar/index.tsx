@@ -4,7 +4,7 @@ import { Bell, Menu, X } from "lucide-react";
 import { Drawer } from "antd";
 import { useReduxDispatch, useReduxSelector } from "../../hooks/useRedux";
 import { setOpenAuthoritastionModalVisiblity } from "../../redux/modal-slice";
-
+import img from "../../assets/svg/logo.svg"
 const Header = () => {
   const { pathname } = useLocation();
   const dispatch = useReduxDispatch();
@@ -12,15 +12,16 @@ const Header = () => {
   const navigate = useNavigate();
   const { user, isAuth } = useReduxSelector((state) => state.userSlice);
   return (
-    <div className="py-3 border-b border-[#00800043] sticky top-0 bg-white z-50">
+    <div className="container py-3 border-b border-[#00800043] sticky top-0 bg-white z-50">
       <div className="w-[90%] max-w-[1550px] m-auto flex items-center justify-between">
-        <a href="/">
+        
+      <Link to="/">
           <img
-            src=""
+            src={img}
             alt=""
             className="w-[120px] sm:w-auto object-contain"
-          />
-        </a>
+          /></Link>
+     
 
         <div className="hidden md:flex items-center gap-5">
           <Link

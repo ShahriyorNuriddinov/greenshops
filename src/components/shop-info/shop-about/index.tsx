@@ -4,6 +4,7 @@ import { Avatar, Rate, Skeleton, Tooltip } from "antd";
 import { useQueryHandler } from "../../../hooks/useQuery";
 import { useReduxDispatch } from "../../../hooks/useRedux";
 import { getData } from "../../../redux/shop-slice";
+import { Link } from 'react-router-dom';
 
 const ShopAbout: FC<DataType<ProductsType>> = ({
   data,
@@ -91,9 +92,11 @@ const ShopAbout: FC<DataType<ProductsType>> = ({
       </div>
 
       <div className="flex items-center gap-3 max-[400px]:flex-col max-[400px]:items-start mt-5">
-        <button className="bg-[#46A358] flex rounded-md items-center justify-center text-white w-[130px] h-[35px] max-w-[400px]:w-full">
+       <Link to="/checkout-your-order">
+        <button  className="bg-[#46A358] flex rounded-md items-center justify-center text-white w-[130px] h-[35px] max-w-[400px]:w-full">
           BUY NOW
         </button>
+       </Link>
 
         <button
           onClick={() => dispatch(getData(data))}

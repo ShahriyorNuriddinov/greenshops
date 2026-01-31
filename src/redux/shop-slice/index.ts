@@ -42,7 +42,11 @@ export const shopSlice = createSlice({
       state.data = state.data.filter((value) => value._id !== payload);
       setLocal("shop", state.data);
     },
-
+   clearCart(state) {
+      state.data = [];    
+      state.coupon = 0;   
+      setLocal("shop", []); 
+    },
     increament(state, { payload }) {
       state.data = state.data.map((value) =>
         value._id === payload
@@ -74,6 +78,6 @@ export const shopSlice = createSlice({
   },
 });
 
-export const { getData, deleteData, increament, decreament,  getCoupon } =
+export const { getData, deleteData, increament, decreament,  getCoupon ,  clearCart } =
   shopSlice.actions;
 export default shopSlice.reducer;

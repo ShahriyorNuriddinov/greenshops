@@ -5,7 +5,11 @@ type NotificationType =
   | "409"
   | "confirm_password"
   | "register"
-  | "error";
+  | "error"
+  | "order"
+  | "ordererror"
+| "order-delete"
+| "new"
 export const notificationApi = () => {
   const notify = (type: NotificationType) => {
     switch (type) {
@@ -18,7 +22,15 @@ export const notificationApi = () => {
       case "register":
         return toast.success("Muvaffaqiyatli ro'yxatdan o'tdingiz!");
       case "error":
-        return toast.error("Something error!");
+        return toast.error("Xato");
+      case "order":
+        return toast.success("Buyurtma muvaffaqiyatli amalga oshirildi!");
+        case "ordererror":
+        return toast.error("Malumot to'liq emas");
+        case "order-delete":
+        return toast.success("Buyurtma muvaffaqiyatli o'chirildi!");
+        case "new":
+        return toast.success("Ma'lumot muvaffaqiyatli yangilandi!");
     }
   };
   return notify;
