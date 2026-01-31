@@ -244,4 +244,21 @@ export const useUpdateUserMutation = () => {
       notify("error");
     },
   });
+};export const useCreateBlogMutation = () => {
+  const axios = useAxios();
+  const notify = notificationApi();
+
+  return useMutation({
+    mutationKey: ["create-blog"],
+    mutationFn: (data: { title: string; content: string; short_description: string }) =>
+      axios({
+        url: "user/blog",
+        method: "POST",
+        body: data,
+      }),
+    onSuccess: () => {
+      notify("post"); 
+    },
+    onError: () => notify("error"),
+  });
 };

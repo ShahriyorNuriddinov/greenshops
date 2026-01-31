@@ -10,6 +10,7 @@ type NotificationType =
   | "ordererror"
 | "order-delete"
 | "new"
+| "post"
 export const notificationApi = () => {
   const notify = (type: NotificationType) => {
     switch (type) {
@@ -31,6 +32,8 @@ export const notificationApi = () => {
         return toast.success("Buyurtma muvaffaqiyatli o'chirildi!");
         case "new":
         return toast.success("Ma'lumot muvaffaqiyatli yangilandi!");
+        case "post":
+        return toast.success("Ma'lumot muvaffaqiyatli qo'shildi!");
     }
   };
   return notify;

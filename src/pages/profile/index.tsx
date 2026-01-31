@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import { FaUser, FaBoxOpen, FaMapMarkerAlt, FaHeart, FaClock, FaSignOutAlt, FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { FaUser, FaBoxOpen,FaBloggerB , FaClock, FaSignOutAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useReduxDispatch, useReduxSelector } from "../../hooks/useRedux";
 import { setOpenDeleteOrderModal, setOrderData } from "../../redux/modal-slice";
 import { logout } from "../../redux/user-slice";
 import { useGetOrdersQuery, useUpdateUserMutation } from "../../hooks/useQueryAction"; 
 import useLoader from "../../generic/loader";
 import DeleteOrderModal from "../../components/modals/delete-modal";
+import PostBlog from "../../components/Blog";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ const Profile = () => {
 
   const [showPass, setShowPass] = useState({ new: false, confirm: false });
 
-  // Redux o'zgarganda formani yangilash (Avtomatik yangilanish asosi)
   useEffect(() => {
     if (user) {
       setFormData((prev) => ({
@@ -82,7 +81,8 @@ const Profile = () => {
           <ul className="space-y-1">
             {[{ key: "profile", icon: <FaUser />, label: "Account Details" },
               { key: "orders", icon: <FaBoxOpen />, label: "Orders" },
-              { key: "trackOrder", icon: <FaClock />, label: "Track Order" }
+              { key: "trackOrder", icon: <FaClock />, label: "Track Order" },
+                { key: "post", icon: <FaBloggerB />, label: "Post your blog" }
             ].map(({ key, icon, label }) => (
               <li key={key}>
                 <button onClick={() => setActiveTab(key)} className={clsx("w-full text-left px-4 py-3 flex items-center gap-3 font-medium border-l-[4px]", activeTab === key ? "bg-white text-[#46A358] border-[#46A358]" : "text-[#727272] border-transparent hover:text-[#46A358]")}>
@@ -126,7 +126,8 @@ const Profile = () => {
                 <button type="submit" disabled={isUpdating} className="mt-10 bg-[#46A358] text-white px-10 py-3 rounded-md font-bold hover:bg-[#3b8a4a] transition-all disabled:bg-gray-400">{isUpdating ? "Saving..." : "Save Change"}</button>
               </form>
             </div>
-          )}
+          )}    
+            {activeTab === "post" && <PostBlog/>}
 
           {activeTab === "trackOrder" && (
             <div className="animate-in slide-in-from-right duration-500">

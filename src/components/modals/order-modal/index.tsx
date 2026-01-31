@@ -13,12 +13,13 @@ const OrderConfirmationModal = () => {
       <div className="bg-white w-full max-w-[580px] rounded-sm shadow-2xl overflow-hidden animate-in zoom-in duration-300">
         <div className="bg-[#46A3581A] py-10 flex flex-col items-center border-b-[1.5px] border-[#46A35833] relative">
           <button onClick={() => dispatch(setOpenOrderModal(false))} className="absolute top-4 right-4 text-[#46A358] text-xl font-bold">✕</button>
-          <img src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Ficons%2Fthank-you.svg?alt=media" alt="" className="w-16 mb-4" />
+          
           <p className="text-[#727272] text-[16px]">Your order has been received</p>
         </div>
 
         <div className="p-8">
           <div className="grid grid-cols-4 gap-4 border-b pb-5 mb-6 text-[14px]">
+              <div><p className="text-[#727272] mb-1">Order Number</p><p className="font-bold text-[#3D3D3D]">{orderData._id?.slice(-13)}</p></div>
             <div><p className="text-[#727272] mb-1">Order Number</p><p className="font-bold text-[#3D3D3D]">{orderData._id?.slice(-8)}</p></div>
             <div><p className="text-[#727272] mb-1">Date</p><p className="font-bold text-[#3D3D3D]">{new Date(orderData.created_at).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}</p></div>
             <div><p className="text-[#727272] mb-1">Total</p><p className="font-bold text-[#3D3D3D]">${orderData.extra_shop_info?.total?.toFixed(2)}</p></div>
