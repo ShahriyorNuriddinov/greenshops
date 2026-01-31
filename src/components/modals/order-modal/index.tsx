@@ -51,7 +51,7 @@ const OrderConfirmationModal = () => {
             <div className="flex justify-between font-bold text-[18px] text-[#3D3D3D]"><span>Total</span><span className="text-[#46A358]">${orderData.extra_shop_info?.total?.toFixed(2)}</span></div>
           </div>
 
-       <Link to="profile">
+       <Link to="/">
           <button onClick={() => dispatch(setOpenOrderModal(false))}  className="w-full bg-[#46A358] text-white py-4 rounded-[3px] font-bold hover:bg-[#3b8a4a] transition-all">
             Track your order
           </button>

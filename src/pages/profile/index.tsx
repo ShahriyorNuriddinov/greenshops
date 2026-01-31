@@ -107,46 +107,95 @@ const Profile = () => {
                   <div><label className={labelStyle}>Username *</label><input name="username" value={formData.username} onChange={handleChange} className={inputStyle} type="text" required /></div>
                   <div><label className={labelStyle}>Photo URL *</label><input name="profile_photo" value={formData.profile_photo} onChange={handleChange} className={inputStyle} type="text" required /></div>
                 </div>
-
-                <div className="mt-10">
-                  <h3 className="text-[18px] font-bold mb-6 border-b pb-2">Password change</h3>
-                  <div className="max-w-[500px] space-y-5">
-                    <div className="relative">
-                      <label className={labelStyle}>New password</label>
-                      <input name="newPassword" onChange={handleChange} className={inputStyle} type={showPass.new ? "text" : "password"} />
-                      <button type="button" onClick={() => setShowPass({...showPass, new: !showPass.new})} className="absolute right-4 top-10 text-gray-400">{showPass.new ? <FaEyeSlash /> : <FaEye />}</button>
-                    </div>
-                    <div className="relative">
-                      <label className={labelStyle}>Confirm new password</label>
-                      <input name="confirmPassword" onChange={handleChange} className={inputStyle} type={showPass.confirm ? "text" : "password"} />
-                      <button type="button" onClick={() => setShowPass({...showPass, confirm: !showPass.confirm})} className="absolute right-4 top-10 text-gray-400">{showPass.confirm ? <FaEyeSlash /> : <FaEye />}</button>
-                    </div>
-                  </div>
-                </div>
                 <button type="submit" disabled={isUpdating} className="mt-10 bg-[#46A358] text-white px-10 py-3 rounded-md font-bold hover:bg-[#3b8a4a] transition-all disabled:bg-gray-400">{isUpdating ? "Saving..." : "Save Change"}</button>
               </form>
             </div>
           )}    
             {activeTab === "post" && <PostBlog/>}
+            {activeTab === "orders" && (
+  <div className="animate-in fade-in duration-500">
+    <h2 className="text-[22px] font-bold text-[#3D3D3D] mb-8">My Products</h2>
 
-          {activeTab === "trackOrder" && (
-            <div className="animate-in slide-in-from-right duration-500">
-              <h2 className="text-[22px] font-bold mb-8">Track your Orders</h2>
-              <div className="flex justify-between items-center px-6 pb-3 border-b border-[#46A35833] font-bold text-[#3D3D3D]">
-                <span className="flex-[2]">Order Number</span><span className="flex-1 text-center">Date</span><span className="flex-1 text-center">Total</span><span className="w-24 text-right">More</span>
-              </div>
-              <div className="mt-5 space-y-4">
-                {isOrdersLoading ? orders_loader() : orders?.map((order: any) => (
-                  <div key={order._id} className="flex justify-between items-center bg-[#FBFBFB] p-5 rounded-lg border border-transparent hover:border-[#46A35833] transition-all">
-                    <span className="flex-[2] text-[#727272] truncate pr-4">{order._id}</span>
-                    <span className="flex-1 text-center font-bold">{order.created_at?.slice(0, 10)}</span>
-                    <span className="flex-1 text-center font-bold text-[#46A358]">$ {order.extra_shop_info?.total?.toFixed(2)}</span>
-                    <button onClick={() => { dispatch(setOrderData(order)); dispatch(setOpenDeleteOrderModal({ open: true, id: order._id })); }} className="w-24 text-right text-[#46A358] font-medium hover:underline">More info</button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+    <div className="mt-5">
+      {false ? (
+        orders_loader() 
+      ) : (
+        <div className="flex flex-col items-center justify-center py-20 bg-[#FBFBFB] rounded-lg border border-dashed border-gray-300">
+          <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4 text-gray-300 text-5xl">
+            <FaBoxOpen />
+          </div>
+          <h3 className="text-[20px] font-bold text-[#3D3D3D] mb-2">Mahsulotlar mavjud emas</h3>
+          <p className="text-[#727272] text-[14px] mb-8 text-center max-w-[350px] leading-relaxed">
+            Siz hali biron bir mahsulotni sotuvga qo'ymagansiz.
+          </p>
+          <button 
+            onClick={() => navigate("/")}
+            className="bg-[#46A358] text-white px-10 py-3 rounded-md font-bold hover:bg-[#3d8f4d] transition-all shadow-md active:scale-95"
+          >
+            Mahsulotlarni ko'rish
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
+     {activeTab === "trackOrder" && (
+  <div className="animate-in slide-in-from-right duration-500">
+    <h2 className="text-[22px] font-bold mb-8 text-[#3D3D3D]">Track your Orders</h2>
+    
+    {orders && orders.length > 0 && !isOrdersLoading && (
+      <div className="flex justify-between items-center px-6 pb-3 border-b border-[#46A35833] font-bold text-[#3D3D3D]">
+        <span className="flex-[2]">Order Number</span>
+        <span className="flex-1 text-center">Date</span>
+        <span className="flex-1 text-center">Total</span>
+        <span className="w-24 text-right">More</span>
+      </div>
+    )}
+
+    <div className="mt-5 space-y-4">
+      {isOrdersLoading ? (
+        orders_loader()
+      ) : orders && orders.length > 0 ? (
+        orders.map((order: any) => (
+          <div 
+            key={order._id} 
+            className="flex justify-between items-center bg-[#FBFBFB] p-5 rounded-lg border border-transparent hover:border-[#46A35833] transition-all shadow-sm"
+          >
+            <span className="flex-[2] text-[#727272] truncate pr-4" title={order._id}>{order._id}</span>
+            <span className="flex-1 text-center font-bold text-[#3D3D3D]">{order.created_at?.slice(0, 10)}</span>
+            <span className="flex-1 text-center font-bold text-[#46A358]">$ {order.extra_shop_info?.total?.toFixed(2)}</span>
+            <button 
+              onClick={() => { 
+                dispatch(setOrderData(order)); 
+                dispatch(setOpenDeleteOrderModal({ open: true, id: order._id })); 
+              }} 
+              className="w-24 text-right text-[#46A358] font-medium hover:underline"
+            >
+              More info
+            </button>
+          </div>
+        ))
+      ) : (
+        <div className="flex flex-col items-center justify-center py-20 bg-[#FBFBFB] rounded-lg border border-dashed border-gray-300">
+          <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+            <FaClock className="text-4xl text-gray-300" />
+          </div>
+          <h3 className="text-[18px] font-bold text-[#3D3D3D] mb-2">Buyurtmalar topilmadi</h3>
+          <p className="text-[#727272] text-sm mb-6 text-center max-w-[300px]">
+            Hozircha sizda hech qanday buyurtma mavjud emas. 
+          </p>
+          <button 
+            onClick={() => navigate("/")}
+            className="bg-[#46A358] text-white px-8 py-2.5 rounded-md font-bold hover:bg-[#3d8f4d] transition-all active:scale-95"
+          >
+            Do'konga o'tish
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+)}
         </section>
       </div>
       <DeleteOrderModal />
